@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 28 2024 г., 17:56
+-- Время создания: Май 29 2024 г., 19:01
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- База данных: `city_portal`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` bigint UNSIGNED NOT NULL,
+  `id_user` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `id_user`, `name`, `email`, `subject`, `message`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Анастасия', 'user@mail.ru', 'Тема первого сообщения', 'Это первое сообщение пользователя городского портала. Здесь он может написать свои предложения по благоустройству города.', '2024-05-29 12:52:49', '2024-05-29 12:52:49');
 
 -- --------------------------------------------------------
 
@@ -54,11 +78,11 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2024_05_24_193306_create_permission_tables', 2);
+(22, '2014_10_12_000000_create_users_table', 1),
+(23, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(24, '2019_08_19_000000_create_failed_jobs_table', 1),
+(25, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(26, '2024_05_24_193306_create_permission_tables', 1);
 
 -- --------------------------------------------------------
 
@@ -89,8 +113,8 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\Models\\User', 2),
-(2, 'App\\Models\\User', 3);
+(1, 'App\\Models\\User', 1),
+(2, 'App\\Models\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -156,8 +180,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'user', 'web', '2024-05-24 16:34:33', '2024-05-24 16:34:33'),
-(2, 'admin', 'web', '2024-05-24 16:34:59', '2024-05-24 16:34:59');
+(1, 'admin', 'web', '2024-05-29 11:56:24', '2024-05-29 11:56:24'),
+(2, 'user', 'web', '2024-05-29 11:56:31', '2024-05-29 11:56:31');
 
 -- --------------------------------------------------------
 
@@ -192,12 +216,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'User', 'anya@gmail.com', NULL, '$2y$12$Ej3biXhw2z5skntLm/.JFeV/mm4J9BX/pmPHlI4emIF4ita5YCxhe', NULL, '2024-05-24 16:36:27', '2024-05-24 16:36:27'),
-(3, 'Admin', 'hhhrrrukkk@mail.ru', NULL, '$2y$12$v4AJtRF5t2L8IQpQBPDJ1uzXmH7XFAPEiJS5OssJ7wiiRvT2Pvbgi', NULL, '2024-05-24 16:37:11', '2024-05-24 16:37:11');
+(1, 'Администратор', 'admin@mail.ru', NULL, '$2y$12$jEjMQHKDmPB1c7kFSj.ArOvKziZL0qvSAevHvuv1MuH/2.hl.DN7G', NULL, '2024-05-29 12:01:45', '2024-05-29 12:01:45'),
+(2, 'Пользователь', 'user@mail.ru', NULL, '$2y$12$5yHBcyjF9YgpcZ7MXT5Mv.BdPOu9yXIpPfbXrl1h6YCe5KEE2VQAO', NULL, '2024-05-29 12:08:36', '2024-05-29 12:08:36');
 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `failed_jobs`
@@ -273,6 +303,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT для таблицы `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -282,7 +318,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`
@@ -306,7 +342,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
