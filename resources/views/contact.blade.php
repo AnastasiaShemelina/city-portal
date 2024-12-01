@@ -28,6 +28,14 @@
                 <label for="email">Email</label>
                 <input type="text" name="email" placeholder="Ваш Email" id="email" class="form-control rounded bg-gray-100 border border-gray-400">
             </div>
+            <div class="form-group text-gray-300 mt-2">
+                <label for="category_id">Категория заявки</label>
+                <select name="category_id" id="category_id" class="form-control rounded bg-gray-100 border border-gray-400">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class=" form-group text-gray-300 mt-2">
                 <label for="subject">Тема заявки</label>
                 <input type="text" name="subject" placeholder="Тема заявки" id="subject" class="form-control rounded bg-gray-100 border border-gray-400">

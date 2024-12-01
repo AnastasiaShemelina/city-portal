@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 use App\Http\Requests\ContactRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Contact;
+use App\Models\Category;
 
 class ContactController extends Controller
 {
+    public function submitForm()
+    {
+        // Загружаем все категории
+        $categories = Category::all();
+    
+        // Передаем категории в представление
+        return view('contact', compact('categories'));
+    }
     public function submit(ContactRequest $req) {
         $contact = new Contact();
         $contact->id_user = Auth::user()->id;
         $contact->name = $req->input('name');
         $contact->email = $req->input('email');
+        $contact->category_id = $req->input('category_id');
         $contact->subject = $req->input('subject');
         $contact->message = $req->input('message');
         $contact->save();

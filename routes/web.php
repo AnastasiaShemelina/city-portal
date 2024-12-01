@@ -64,9 +64,15 @@ Route::middleware('auth')->group(function () {
     
 
     Route::group(['middleware' => ['role:admin|user']], function () {
-    Route::get('/contact', function() {
-        return view('contact');
-    })->name('contact');
+
+    // Закомментирован неправильный код:
+    // Route::get('/contact', function() {
+    //     return view('contact');
+    // })->name('contact');
+    
+    // Исправленный код:
+    // Теперь мы вызываем метод submitForm из контроллера ContactController, который загружает категории
+    Route::get('/contact', [App\Http\Controllers\ContactController::class, 'submitForm'])->name('contact');
     
     Route::post(
         '/contact/submit', 
