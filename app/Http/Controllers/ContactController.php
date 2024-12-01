@@ -50,9 +50,21 @@ class ContactController extends Controller
         return view('user-one-message', ['data' => $contact->find($id)]);
     }
 
-    public function updateMessage($id) {
-        $contact = new Contact();
-        return view('user-update', ['data' => $contact->find($id)]);
+    // public function updateMessage($id) {
+    //     $contact = new Contact();
+    //     return view('user-update', ['data' => $contact->find($id)]);
+    // }
+
+    public function updateMessage($id)
+    {
+        // Получаем заявку по ID
+        $contact = Contact::find($id);
+
+        // Получаем все категории
+        $categories = Category::all();
+
+        // Передаем заявку и категории в представление
+        return view('user-update', ['data' => $contact, 'categories' => $categories]);
     }
 
     public function deleteMessage($id) {
@@ -65,6 +77,7 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         $contact->name = $req->input('name');
         $contact->email = $req->input('email');
+        $contact->category_id = $req->input('category_id');
         $contact->subject = $req->input('subject');
         $contact->message = $req->input('message');
         $contact->save();

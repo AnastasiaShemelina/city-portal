@@ -18,6 +18,18 @@
     </div>
 
     <div class="form-group pt-2">
+        <label for="category_id">Категория</label>
+        <select name="category_id" id="category_id" class="form-control" required>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}" 
+                    @if($data->category_id == $category->id) selected @endif>
+                    {{ $category->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div class="form-group pt-2">
         <label for="subject">Тема заявки</label>
         <input type="text" name="subject" value="{{$data->subject}}" placeholder="Тема заявки" id="subject" class="form-control">
     </div>
@@ -27,6 +39,6 @@
         <textarea type="text" name="message" placeholder="Текст заявки" id="message" class="form-control">{{$data->message}}</textarea>
     </div>
 
-    <input type="submit" class="btn btn-success mt-2" value="Update">
+    <input type="submit" class="btn btn-success mt-2" value="Обновить">
     </form>
 </x-app-layout>
