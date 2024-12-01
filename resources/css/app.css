@@ -18,3 +18,9 @@
     --bs-btn-disabled-bg: #198754;
     --bs-btn-disabled-border-color: #198754;
   }
+
+  .p-6 {
+    background-color: #212529; /* Темный фон */
+    color: white; /* Белый текст */
+    border: 2px solid #848fff;
+}

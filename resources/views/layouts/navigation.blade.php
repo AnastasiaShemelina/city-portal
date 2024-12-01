@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="border-b border-gray-100 dark:border-gray-700 bg-dark">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -11,28 +11,28 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-400">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white hover:text-white">
                         {{ __('Дашборд') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
-                        {{ __('Новое сообщение') }}
+                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')" class="text-white hover:text-white">
+                        {{ __('Новая заявка') }}
                     </x-nav-link>
                 </div>
                 
                 @auth 
                  @if(Auth::user()->isAdmin())
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin-data')" :active="request()->routeIs('admin-data')">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-400">
+                    <x-nav-link :href="route('admin-data')" :active="request()->routeIs('admin-data')" class="text-white hover:text-white">
                         {{ __('Панель управления') }}
                     </x-nav-link>
                 </div>
                  @else
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('user-data')" :active="request()->routeIs('user-data')">
-                        {{ __('Мои сообщения') }}
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-400">
+                    <x-nav-link :href="route('user-data')" :active="request()->routeIs('user-data')" class="text-white hover:text-white">
+                        {{ __('Мои заявки') }}
                     </x-nav-link>
                 </div>
                  @endif
@@ -43,7 +43,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border text-sm leading-4 font-medium rounded-md text-gray-300 dark:text-gray-800 bg-dark dark:bg-gray-800 hover:text-gray-800 dark:hover:text-gray-300 text-white focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -94,7 +94,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+        <div class="pt-4 pb-1 border-top border-light bg-dark text-white">
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
