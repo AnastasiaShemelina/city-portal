@@ -3,24 +3,189 @@
 @tailwind utilities;
 
 .btn-success {
-    --bs-btn-color: rgb(31 41 55 / var(--tw-text-opacity));
-    --bs-btn-bg: #198754;
-    --bs-btn-border-color: #198754;
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #157347;
-    --bs-btn-hover-border-color: #146c43;
-    --bs-btn-focus-shadow-rgb: 60, 153, 110;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: #146c43;
-    --bs-btn-active-border-color: #13653f;
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: #198754;
-    --bs-btn-disabled-border-color: #198754;
-  }
+  --bs-btn-color: rgb(255 255 255 / var(--tw-text-opacity)); /* Белый текст */
+  --bs-btn-bg: #198754; /* Зеленый фон */
+  --bs-btn-border-color: #198754; /* Зеленая рамка */
+  --bs-btn-hover-color: #fff; /* Белый текст при наведении */
+  --bs-btn-hover-bg: #157347; /* Темно-зеленый фон при наведении */
+  --bs-btn-hover-border-color: #146c43; /* Темно-зеленая рамка при наведении */
+  --bs-btn-focus-shadow-rgb: 60, 153, 110; /* Цвет тени при фокусе */
+  --bs-btn-active-color: #fff; /* Белый текст в активном состоянии */
+  --bs-btn-active-bg: #146c43; /* Темно-зеленый фон в активном состоянии */
+  --bs-btn-active-border-color: #13653f; /* Темно-зеленая рамка в активном состоянии */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); /* Тень в активном состоянии */
+  --bs-btn-disabled-color: #6c757d; /* Серый цвет текста для выключенной кнопки */
+  --bs-btn-disabled-bg: #198754; /* Зеленый фон для выключенной кнопки */
+  --bs-btn-disabled-border-color: #198754; /* Зеленая рамка для выключенной кнопки */
+}
+
+.btn-warning {
+  --bs-btn-color: #fff; /* Белый текст */
+  --bs-btn-bg: #848fff; /* Светлый фиолетовый фон */
+  --bs-btn-border-color: #848fff; /* Светло-фиолетовая рамка */
+  --bs-btn-hover-color: #fff; /* Белый текст при наведении */
+  --bs-btn-hover-bg: #6c7dfc; /* Более темный фиолетовый фон при наведении */
+  --bs-btn-hover-border-color: #6c7dfc; /* Более темная фиолетовая рамка при наведении */
+  --bs-btn-focus-shadow-rgb: 60, 60, 255; /* Тень при фокусе */
+  --bs-btn-active-color: #fff; /* Белый текст в активном состоянии */
+  --bs-btn-active-bg: #5a6bf6; /* Темно-фиолетовый фон при активном состоянии */
+  --bs-btn-active-border-color: #5a6bf6; /* Темно-фиолетовая рамка при активном состоянии */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); /* Тень в активном состоянии */
+  --bs-btn-disabled-color: #fff; /* Белый текст для выключенной кнопки */
+  --bs-btn-disabled-bg: #b3b6ff; /* Светло-фиолетовый фон для выключенной кнопки */
+  --bs-btn-disabled-border-color: #b3b6ff; /* Светло-фиолетовая рамка для выключенной кнопки */
+}
+
+.btn-primary {
+  --bs-btn-color: #fff; /* Белый текст */
+  --bs-btn-bg: #281d7a; /* Темно-фиолетовый фон */
+  --bs-btn-border-color: #281d7a; /* Темно-фиолетовая рамка */
+  --bs-btn-hover-color: #fff; /* Белый текст при наведении */
+  --bs-btn-hover-bg: #2a1f8d; /* Немного светлее фиолетовый при наведении */
+  --bs-btn-hover-border-color: #2a1f8d; /* Немного светлее фиолетовая рамка при наведении */
+  --bs-btn-focus-shadow-rgb: 40, 31, 122; /* Тень при фокусе */
+  --bs-btn-active-color: #fff; /* Белый текст в активном состоянии */
+  --bs-btn-active-bg: #221561; /* Темно-фиолетовый фон при активном состоянии */
+  --bs-btn-active-border-color: #221561; /* Темно-фиолетовая рамка при активном состоянии */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); /* Тень в активном состоянии */
+  --bs-btn-disabled-color: #fff; /* Белый текст для выключенной кнопки */
+  --bs-btn-disabled-bg: #5e55b2; /* Светло-фиолетовый фон для выключенной кнопки */
+  --bs-btn-disabled-border-color: #5e55b2; /* Светло-фиолетовая рамка для выключенной кнопки */
+}
+.btn-danger {
+  --bs-btn-color: #fff; /* Белый текст */
+  --bs-btn-bg: #930049; /* Темно-красный фон */
+  --bs-btn-border-color: #930049; /* Темно-красная рамка */
+  --bs-btn-hover-color: #fff; /* Белый текст при наведении */
+  --bs-btn-hover-bg: #a20050; /* Немного светлее красный при наведении */
+  --bs-btn-hover-border-color: #a20050; /* Немного светлее красная рамка при наведении */
+  --bs-btn-focus-shadow-rgb: 147, 0, 73; /* Тень при фокусе */
+  --bs-btn-active-color: #fff; /* Белый текст в активном состоянии */
+  --bs-btn-active-bg: #7f0040; /* Темно-красный фон при активном состоянии */
+  --bs-btn-active-border-color: #7f0040; /* Темно-красная рамка при активном состоянии */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); /* Тень в активном состоянии */
+  --bs-btn-disabled-color: #fff; /* Белый текст для выключенной кнопки */
+  --bs-btn-disabled-bg: #b44f70; /* Светло-красный фон для выключенной кнопки */
+  --bs-btn-disabled-border-color: #b44f70; /* Светло-красная рамка для выключенной кнопки */
+}
+
+
+    /* Стили для x-primary-button (Сохранить) */
+    .x-primary-button {
+        color: white;
+        background-color: #281d7a;
+        border: 1px solid #241973;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .x-primary-button:hover {
+        background-color: #20176b;
+        border-color: #1c1363;
+    }
+
+    .x-primary-button:active {
+        background-color: #1a115c;
+        border-color: #18105a;
+    }
+
+    .x-primary-button:focus {
+        outline: 2px solid #1a115c;
+        outline-offset: 2px;
+    }
+
+    /* Стили для x-danger-button (Удалить) */
+    .x-danger-button {
+        color: white;
+        background-color: #930049;
+        border: 1px solid #830042;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .x-danger-button:hover {
+        background-color: #7a003e;
+        border-color: #690039;
+    }
+
+    .x-danger-button:active {
+        background-color: #590033;
+        border-color: #500030;
+    }
+
+    .x-danger-button:focus {
+        outline: 2px solid #590033;
+        outline-offset: 2px;
+    }
+
+
+
+
+.alert-info {
+  background-color: #bfc4fb;/* Цвет фона */
+  color: rgb(19, 19, 19); /* Цвет текста */
+  padding: 20px; /* Внутренние отступы */
+  max-width: 70%; /* Максимальная ширина */
+  margin-left: auto; /* Автоматический отступ слева */
+  margin-right: auto; /* Автоматический отступ справа */
+  border-radius: 0.375rem; /* Скругление углов, если нужно */
+}
+
+/* Стили для всех элементов формы */
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+  background-color: #212529; /* Черный фон */
+  color: white; /* Белый текст */
+  border: 1px solid #848fff; /* Тонкая рамка с цветом #848fff */
+  padding: 10px; /* Отступы внутри поля */
+  border-radius: 4px; /* Скругленные углы */
+  width: 100%; /* Для элементов, таких как input, textarea, select, чтобы они занимали всю ширину */
+}
+
+/* Стили для текста в placeholder */
+input[type="text"]::placeholder, 
+input[type="email"]::placeholder, 
+input[type="password"]::placeholder,
+textarea::placeholder {
+  color: #6c757d; /* Серый цвет для placeholder */
+}
+
+/* Стили для select (выпадающий список) */
+select.form-control {
+  background-color: #212529; /* Черный фон */
+  color: white; /* Белый текст */
+  border: 1px solid #848fff; /* Тонкая рамка с цветом #848fff */
+  padding: 10px; /* Отступы внутри поля */
+  border-radius: 4px; /* Скругленные углы */
+}
+
+/* Для textarea */
+textarea.form-control {
+  background-color: #212529; /* Черный фон */
+  color: white; /* Белый текст */
+  border: 1px solid #848fff; /* Тонкая рамка с цветом #848fff */
+  padding: 10px; /* Отступы внутри поля */
+  border-radius: 4px; /* Скругленные углы */
+  min-height: 100px; /* Минимальная высота для textarea */
+}
+
+/* Стили для фокуса на всех элементах формы */
+input[type="text"]:focus, 
+input[type="email"]:focus, 
+input[type="password"]:focus,
+textarea:focus,
+select:focus,
+
 
   .p-6 {
     background-color: #212529; /* Темный фон */
     color: white; /* Белый текст */
     border: 2px solid #848fff;
+}
+.header-container {
+  display: flex;
+  align-items: center;
 }

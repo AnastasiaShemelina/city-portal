@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
     ->middleware(['auth', 'verified'])
