@@ -12,28 +12,56 @@ use App\Models\Status;
 
 class ContactController extends Controller
 {
+    // public function submitForm()
+    // {
+    //     // Загружаем все категории
+    //     $categories = Category::all();
+    
+    //     // Передаем категории в представление
+    //     return view('contact', compact('categories'));
+    // }
     public function submitForm()
     {
         // Загружаем все категории
         $categories = Category::all();
-    
-        // Передаем категории в представление
-        return view('contact', compact('categories'));
+
+        // Передаем данные пользователя и категории в представление
+        return view('contact', compact('categories'))
+            ->with('user', Auth::user()); // Передаем данные текущего пользователя
     }
+
+    // public function submit(ContactRequest $req) {
+    //     $contact = new Contact();
+    //     $contact->id_user = Auth::user()->id;
+    //     $contact->name = $req->input('name');
+    //     $contact->email = $req->input('email');
+    //     $contact->category_id = $req->input('category_id');
+    //     $contact->subject = $req->input('subject');
+    //     $contact->message = $req->input('message');
+    
+    //     // Устанавливаем статус "Новая" (id = 1)
+    //     $contact->status_id = 1;
+    
+    //     $contact->save();
+    
+    //     return redirect()->route('contact')->with('success', 'Сообщение было добавлено');
+    // }
     public function submit(ContactRequest $req) {
         $contact = new Contact();
-        $contact->id_user = Auth::user()->id;
-        $contact->name = $req->input('name');
-        $contact->email = $req->input('email');
+        $contact->id_user = Auth::user()->id;  // Используем ID текущего пользователя
+        $contact->name = $req->input('name');  // Имя из формы
+        $contact->email = $req->input('email');  // Email из формы
         $contact->category_id = $req->input('category_id');
         $contact->subject = $req->input('subject');
         $contact->message = $req->input('message');
-    
+        
         // Устанавливаем статус "Новая" (id = 1)
         $contact->status_id = 1;
-    
+        
+        // Сохраняем заявку
         $contact->save();
-    
+        
+        // Перенаправляем обратно с сообщением об успешной отправке
         return redirect()->route('contact')->with('success', 'Сообщение было добавлено');
     }
     public function allData() {

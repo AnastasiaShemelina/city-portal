@@ -24,13 +24,14 @@
                 <label for="status">Статус заявки</label>
                 <p class="bg-gray-200 p-2 rounded">Новый</p> <!-- Статус отображается как текст -->
             </div>
-            <div class="form-group text-gray-300 mt-2">
+            <div>
                 <label for="name">Имя</label>
-                <input type="text" name="name" placeholder="Ваше имя" id="name" class="form-control rounded bg-gray-100 border border-gray-400" >
+                <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" required>
             </div>
-            <div class=" form-group text-gray-300 mt-2">
+
+            <div>
                 <label for="email">Email</label>
-                <input type="text" name="email" placeholder="Ваш Email" id="email" class="form-control rounded bg-gray-100 border border-gray-400">
+                <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}" required>
             </div>
             <div class="form-group text-gray-300 mt-2">
                 <label for="category_id">Категория заявки</label>

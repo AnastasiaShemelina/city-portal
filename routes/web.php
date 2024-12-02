@@ -73,11 +73,13 @@ Route::middleware('auth')->group(function () {
     // Теперь мы вызываем метод submitForm из контроллера ContactController, который загружает категории
     Route::get('/contact', [App\Http\Controllers\ContactController::class, 'submitForm'])->name('contact');
     
+    Route::post('/contact', [ContactController::class, 'submit'])->name('contact-submit');  
+    
     Route::post(
         '/contact/submit', 
         'App\Http\Controllers\ContactController@submit'
         )->name('contact-form');
-    
+      
     Route::get(
         '/contact/all', 
         'App\Http\Controllers\ContactController@allData' 
