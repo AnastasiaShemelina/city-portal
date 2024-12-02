@@ -8,6 +8,7 @@ use App\Http\Requests\ContactRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Contact;
 use App\Models\Category;
+use App\Models\Status;
 
 class ContactController extends Controller
 {
@@ -27,7 +28,12 @@ class ContactController extends Controller
         $contact->category_id = $req->input('category_id');
         $contact->subject = $req->input('subject');
         $contact->message = $req->input('message');
+    
+        // Устанавливаем статус "Новая" (id = 1)
+        $contact->status_id = 1;
+    
         $contact->save();
+    
         return redirect()->route('contact')->with('success', 'Сообщение было добавлено');
     }
     public function allData() {
@@ -72,15 +78,38 @@ class ContactController extends Controller
         return redirect()->route('user-data')->with('success', 'Сообщение было удалено');
     }
 
-    public function updateMessageSubmit($id, ContactRequest $req) {
+    // public function updateMessageSubmit($id, ContactRequest $req) {
         
+    //     $contact = Contact::find($id);
+    //     $contact->name = $req->input('name');
+    //     $contact->email = $req->input('email');
+    //     $contact->category_id = $req->input('category_id');
+    //     $contact->subject = $req->input('subject');
+    //     $contact->message = $req->input('message');
+    //     $contact->save();
+    //     return redirect()->route('user-data-one', $id)->with('success', 'Сообщение было обновлено');
+    // }
+    public function updateMessageSubmit($id, ContactRequest $req) {
         $contact = Contact::find($id);
+    
+        // Убедимся, что только администратор может изменять статус
+        if (Auth::user()->isAdmin()) {  // Используем метод isAdmin
+            // Логика изменения статуса, например, с "Новый" на "Решена" или "Отклонена"
+            if ($contact->status_id == 1) { // Статус "Новый"
+                // Обновляем статус на новый, который передан в запросе
+                $contact->status_id = $req->input('status_id');
+            }
+        }
+    
         $contact->name = $req->input('name');
         $contact->email = $req->input('email');
         $contact->category_id = $req->input('category_id');
         $contact->subject = $req->input('subject');
         $contact->message = $req->input('message');
         $contact->save();
+    
         return redirect()->route('user-data-one', $id)->with('success', 'Сообщение было обновлено');
     }
+    
+    
 }

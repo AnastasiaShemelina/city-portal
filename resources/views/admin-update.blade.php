@@ -8,6 +8,20 @@
     @csrf
 
     <div class="form-group pt-2">
+        <label for="status_id">Статус заявки</label>
+        <select name="status_id" id="status_id" class="form-control">
+        @foreach($statuses as $status)
+            <option value="{{ $status->id }}"
+                @if($data->status_id == $status->id) selected @endif
+                @if(in_array($status->id, [2, 3]) && !Auth::user()->isAdmin()) disabled @endif>
+                {{ $status->name }}
+            </option>
+        @endforeach
+
+        </select>
+    </div>
+
+    <div class="form-group pt-2">
         <label for="name">Имя</label>
         <input type="text" name="name" value="{{$data->name}}" placeholder="Your name" id="name" class="form-control">
     </div>

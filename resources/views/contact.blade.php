@@ -21,6 +21,10 @@
         @csrf
         <div class="dark:text-gray-800">
             <div class="form-group text-gray-300 mt-2">
+                <label for="status">Статус заявки</label>
+                <p class="bg-gray-200 p-2 rounded">Новый</p> <!-- Статус отображается как текст -->
+            </div>
+            <div class="form-group text-gray-300 mt-2">
                 <label for="name">Имя</label>
                 <input type="text" name="name" placeholder="Ваше имя" id="name" class="form-control rounded bg-gray-100 border border-gray-400" >
             </div>

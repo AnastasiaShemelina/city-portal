@@ -91,6 +91,7 @@
                         <div class="card-body">
                             <h5 class="card-title text-truncate">{{$el->subject}}</h5>
                             <p class="card-text text-truncate">{{$el->email}}</p>
+                            <p class="card-text text-truncate">Категория: {{$el->category->name}}</p>
                         </div>
                         <div class="card-footer ">
                             <small>{{$el->created_at}}</small>

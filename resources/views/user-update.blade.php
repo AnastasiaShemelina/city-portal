@@ -7,6 +7,12 @@
     <form action="{{route('user-update-submit', $data->id)}}" class="max-w-7x1 mx-auto sm:px-6 lg:px-8 mt-8" method="post">
     @csrf
 
+    <!-- Статус заявки (Текстовое поле, доступное только для просмотра) -->
+    <div class="form-group text-gray-300 pt-2">
+        <label for="status_id">Статус заявки</label>
+        <p>{{ $data->status->name }}</p> <!-- Статус как текст -->
+    </div>
+    
     <div class="form-group text-gray-300 pt-2">
         <label for="name">Имя</label>
         <input type="text" name="name" value="{{$data->name}}" placeholder="Your name" id="name" class="form-control">

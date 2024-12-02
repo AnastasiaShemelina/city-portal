@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 01 2024 г., 17:59
+-- Время создания: Дек 02 2024 г., 16:59
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -24,6 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int NOT NULL,
+  `name` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Инфраструктура'),
+(2, 'Благоустройство');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `contacts`
 --
 
@@ -32,8 +51,10 @@ CREATE TABLE `contacts` (
   `id_user` bigint UNSIGNED NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` int NOT NULL,
   `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -42,14 +63,15 @@ CREATE TABLE `contacts` (
 -- Дамп данных таблицы `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `id_user`, `name`, `email`, `subject`, `message`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Анастасия', 'user@mail.ru', 'Измененная админом тема первого сообщения', 'Это первое сообщение пользователя городского портала. Здесь он может написать свои предложения по благоустройству города.', '2024-05-29 12:52:49', '2024-11-30 17:31:49'),
-(2, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 'Первое сообщение!', 'тут первое сообщение этого пользователя. Для теста. Всего 2/7', '2024-11-30 20:12:49', '2024-11-30 20:12:49'),
-(3, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 'Второе сообщение!', 'Тест. Всего 3/7', '2024-11-30 20:13:28', '2024-11-30 20:13:28'),
-(4, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 'Третье сообщение!', 'Тест. Всего 4/7', '2024-11-30 20:13:52', '2024-11-30 20:13:52'),
-(5, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 'Четвертое сообщение!', 'Тест. Всего 5/7', '2024-11-30 20:14:28', '2024-11-30 20:14:28'),
-(6, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 'Пятое сообщение!', 'Тест. Всего 6/7', '2024-11-30 20:14:45', '2024-11-30 20:14:45'),
-(7, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 'Шестое сообщение!', 'Тест. Всего 7/7', '2024-11-30 20:15:03', '2024-11-30 20:15:03');
+INSERT INTO `contacts` (`id`, `id_user`, `name`, `email`, `category_id`, `subject`, `message`, `status_id`, `created_at`, `updated_at`) VALUES
+(2, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Первое сообщение!', 'тут первое сообщение этого пользователя. Для теста. Всего 2/7', 1, '2024-11-30 20:12:49', '2024-11-30 20:12:49'),
+(3, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Второе сообщение!', 'Тест. Всего 3/7', 1, '2024-11-30 20:13:28', '2024-11-30 20:13:28'),
+(4, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 1, 'Третье сообщение!', 'Тест. Всего 4/7', 1, '2024-11-30 20:13:52', '2024-11-30 20:13:52'),
+(5, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Четвертое сообщение!', 'Тест. Всего 5/7', 1, '2024-11-30 20:14:28', '2024-11-30 20:14:28'),
+(6, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 1, 'Пятое сообщение!', 'Тест. Всего 6/7', 1, '2024-11-30 20:14:45', '2024-11-30 20:14:45'),
+(7, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Шестое сообщение!', 'Тест. Всего 7/7', 1, '2024-11-30 20:15:03', '2024-11-30 20:15:03'),
+(9, 4, 'Настя', 'hruk@mail.ru', 1, 'Заявка', 'укьлаькудаькькьмьаетиетм каьк уаоь уф ф', 1, '2024-12-02 07:27:19', '2024-12-02 07:27:19'),
+(10, 5, 'Елизавета', 'el@mail.ru', 1, 'ffffffffffffff', 'efvffvg v tgtgttttt', 1, '2024-12-02 07:59:23', '2024-12-02 07:59:23');
 
 -- --------------------------------------------------------
 
@@ -121,7 +143,9 @@ CREATE TABLE `model_has_roles` (
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 1),
 (2, 'App\\Models\\User', 2),
-(2, 'App\\Models\\User', 3);
+(2, 'App\\Models\\User', 3),
+(2, 'App\\Models\\User', 4),
+(2, 'App\\Models\\User', 5);
 
 -- --------------------------------------------------------
 
@@ -204,6 +228,26 @@ CREATE TABLE `role_has_permissions` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `statuses`
+--
+
+CREATE TABLE `statuses` (
+  `id` int NOT NULL,
+  `name` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `statuses`
+--
+
+INSERT INTO `statuses` (`id`, `name`) VALUES
+(1, 'Новая'),
+(2, 'Решена'),
+(3, 'Отклонена');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
@@ -225,17 +269,27 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Администратор', 'admin@mail.ru', NULL, '$2y$12$jEjMQHKDmPB1c7kFSj.ArOvKziZL0qvSAevHvuv1MuH/2.hl.DN7G', NULL, '2024-05-29 12:01:45', '2024-05-29 12:01:45'),
 (2, 'Пользователь', 'user@mail.ru', NULL, '$2y$12$5yHBcyjF9YgpcZ7MXT5Mv.BdPOu9yXIpPfbXrl1h6YCe5KEE2VQAO', NULL, '2024-05-29 12:08:36', '2024-05-29 12:08:36'),
-(3, 'Аня', '789@mail.ru', NULL, '$2y$12$rwpFDru5FAg4mzw.3ZXJCu.YXfHdG0waaDLTJ3ccOKzyaXzWZZ1s6', NULL, '2024-08-30 07:54:23', '2024-08-30 07:54:23');
+(3, 'Аня', '789@mail.ru', NULL, '$2y$12$rwpFDru5FAg4mzw.3ZXJCu.YXfHdG0waaDLTJ3ccOKzyaXzWZZ1s6', NULL, '2024-08-30 07:54:23', '2024-08-30 07:54:23'),
+(4, 'Настя', 'hruk@mail.ru', NULL, '$2y$12$PGB8UGsg9Ff63At0F9PQGO/uazckDBp21gf7MRm64Dna/Go.44CPy', NULL, '2024-12-01 12:22:40', '2024-12-01 12:22:40'),
+(5, 'Елизавета', 'el@mail.ru', NULL, '$2y$12$EyA0nnYm1IMXFYPndcZKReOaEMAyq.3fbcwPS3XI/.iKJZdi.i2zK', NULL, '2024-12-02 07:58:09', '2024-12-02 07:58:09');
 
 --
 -- Индексы сохранённых таблиц
 --
 
 --
+-- Индексы таблицы `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `contacts`
 --
 ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `status_id` (`status_id`);
 
 --
 -- Индексы таблицы `failed_jobs`
@@ -300,6 +354,12 @@ ALTER TABLE `role_has_permissions`
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
+-- Индексы таблицы `statuses`
+--
+ALTER TABLE `statuses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -311,10 +371,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT для таблицы `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
@@ -347,14 +413,27 @@ ALTER TABLE `roles`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT для таблицы `statuses`
+--
+ALTER TABLE `statuses`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `contacts`
+--
+ALTER TABLE `contacts`
+  ADD CONSTRAINT `contacts_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `contacts_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Ограничения внешнего ключа таблицы `model_has_permissions`
