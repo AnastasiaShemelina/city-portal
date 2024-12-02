@@ -899,10 +899,9 @@
             <a href="#" onclick="window.location.reload();">
                 <img src="{{ asset('img/logowhite.png') }}" alt="Logo" style="width: 50px; margin-right: 16px;">
             </a>
-            <a href="#" onclick="window.location.reload();" class="sm:text-left">
-                <span class="text-3xl font-semibold">Городской портал</span>
-            </a>
+            <span class="text-3xl font-semibold sm:text-left">Городской портал</span>
         </div>
+
 
         <!-- Второй блок: Войти и Зарегистрироваться -->
         <div class="flex items-center">

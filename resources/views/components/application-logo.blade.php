@@ -1,3 +1,6 @@
-<svg viewBox="0 0 316 316" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
-    <p>Городской портал</p>
-</svg>
+<div class="flex items-center">
+    <a href="#" onclick="window.location.reload();">
+        <img src="{{ asset('img/logowhite.png') }}" alt="Городской портал" style="width: 50px; margin-right: 16px;">
+    </a>
+    <span class="text-xl font-semibold">Городской портал</span>
+</div>

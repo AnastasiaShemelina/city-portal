@@ -12,7 +12,12 @@
 
             <p>Статус заявки: <strong>{{ $data->status->name }}</strong></p> <!-- Статус как текст -->
 
-            <a href="{{ route('user-update', $data->id)}}"><button class="btn btn-primary">Редактировать</button></a>
+            @if($data->status_id != 2 && $data->status_id != 3)
+                <a href="{{ route('user-update', $data->id) }}"><button class="btn btn-primary">Редактировать</button></a>
+            @else
+                <!-- Если статус "Решена" или "Отклонена", кнопка не отображается -->
+                <button class="btn btn-primary" disabled>Редактировать</button>
+            @endif
             <a href="{{ route('user-delete', $data->id)}}"><button class="btn btn-danger">Удалить</button></a>
         </div>
     </div>
