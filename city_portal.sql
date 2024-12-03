@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 02 2024 г., 21:26
+-- Время создания: Дек 03 2024 г., 18:38
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -56,23 +56,29 @@ CREATE TABLE `contacts` (
   `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `photo_before` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo_after` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `contacts`
 --
 
-INSERT INTO `contacts` (`id`, `id_user`, `name`, `email`, `category_id`, `subject`, `message`, `status_id`, `created_at`, `updated_at`) VALUES
-(2, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Первое сообщение!', 'тут первое сообщение этого пользователя. Для теста. Всего 2/7', 1, '2024-11-30 20:12:49', '2024-11-30 20:12:49'),
-(3, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Второе сообщение!', 'Тест. Всего 3/7', 1, '2024-11-30 20:13:28', '2024-11-30 20:13:28'),
-(4, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 1, 'Третье сообщение!', 'Тест. Всего 4/7', 1, '2024-11-30 20:13:52', '2024-11-30 20:13:52'),
-(5, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Четвертое сообщение!', 'Тест. Всего 5/7', 1, '2024-11-30 20:14:28', '2024-11-30 20:14:28'),
-(6, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 1, 'Пятое сообщение!', 'Тест. Всего 6/7', 1, '2024-11-30 20:14:45', '2024-11-30 20:14:45'),
-(7, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Шестое сообщениё!', 'Тест. Всего 7/7', 1, '2024-11-30 20:15:03', '2024-12-02 15:05:49'),
-(9, 4, 'Настя', 'hruk@mail.ru', 1, 'Заявка', 'укьлаькудаькькьмьаетиетм каьк уаоь уф ф', 1, '2024-12-02 07:27:19', '2024-12-02 07:27:19'),
-(10, 5, 'Елизавета', 'el@mail.ru', 1, 'ffffffffffffff', 'efvffvg v tgtgttttt', 3, '2024-12-02 07:59:23', '2024-12-02 15:05:18'),
-(11, 2, 'Пользователь', 'user@mail.ru', 1, 'Тема сообщения', 'Текст заявки текст заявки', 2, '2024-12-02 12:29:30', '2024-12-02 12:40:07');
+INSERT INTO `contacts` (`id`, `id_user`, `name`, `email`, `category_id`, `subject`, `message`, `status_id`, `created_at`, `updated_at`, `photo_before`, `photo_after`) VALUES
+(2, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Первое сообщение!', 'тут первое сообщение этого пользователя. Для теста. Всего 2/7', 1, '2024-11-30 20:12:49', '2024-11-30 20:12:49', NULL, NULL),
+(3, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Второе сообщение!', 'Тест. Всего 3/7', 1, '2024-11-30 20:13:28', '2024-11-30 20:13:28', NULL, NULL),
+(4, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 1, 'Третье сообщение!', 'Тест. Всего 4/7', 1, '2024-11-30 20:13:52', '2024-11-30 20:13:52', NULL, NULL),
+(5, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Четвертое сообщение!', 'Тест. Всего 5/7', 1, '2024-11-30 20:14:28', '2024-11-30 20:14:28', NULL, NULL),
+(6, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 1, 'Пятое сообщение!', 'Тест. Всего 6/7', 1, '2024-11-30 20:14:45', '2024-11-30 20:14:45', NULL, NULL),
+(7, 2, 'Ткачук Анна Викторовна', 'user@mail.ru', 2, 'Шестое сообщениё!', 'Тест. Всего 7/7', 1, '2024-11-30 20:15:03', '2024-12-02 15:05:49', NULL, NULL),
+(9, 4, 'Настя', 'hruk@mail.ru', 1, 'Заявка', 'укьлаькудаькькьмьаетиетм каьк уаоь уф ф', 1, '2024-12-02 07:27:19', '2024-12-02 07:27:19', NULL, NULL),
+(10, 5, 'Елизавета', 'el@mail.ru', 1, 'ffffffffffffff', 'efvffvg v tgtgttttt', 3, '2024-12-02 07:59:23', '2024-12-02 15:05:18', NULL, NULL),
+(11, 2, 'Пользователь', 'user@mail.ru', 1, 'Тема сообщения', 'Текст заявки текст заявки', 2, '2024-12-02 12:29:30', '2024-12-02 12:40:07', NULL, NULL),
+(12, 2, 'Пользователь', 'user@mail.ru', 1, 'Проверяем фото', 'Проверяем фотоПроверяем фотоПроверяем фотоПроверяем фотоПроверяем фотоПроверяем фото', 1, '2024-12-02 17:13:26', '2024-12-02 18:22:53', 'photos/R3opofqv0TEdS5gsWU9blWVN8ycr8A9TCCCB4t6Q.png', NULL),
+(15, 2, 'Пользователь', 'user@mail.ru', 2, 'Проблемы с тротуарами на улице Ленина', 'Тротуар на улице Ленина в районе дома №12 сильно разрушен, плитка взорвана, местами образуются ямы, что создает опасность для пешеходов. Просим провести ремонт тротуара', 1, '2024-12-02 19:49:01', '2024-12-02 19:49:01', 'photos/01z4GilA0U7M3LwP2gazeHLl6p7LElwoDR5OUotP.png', NULL),
+(16, 2, 'Пользователь', 'user@mail.ru', 1, 'Проблемы с водоотведением на улице Горького', 'Во время дождей на улице Горького происходит затопление дорожного полотна, так как система водоотведения не справляется с нагрузкой. Просим провести работы по улучшению дренажа.', 1, '2024-12-02 19:50:40', '2024-12-02 19:53:13', 'photos/k8EZnJFjSOQ5m6SqJHGgFzeoBBaK87YFpSDrb0ZL.jpg', NULL),
+(17, 1, 'Администратор', 'admin@mail.ru', 1, 'Тестовая заявка администратора', 'Тестовая заявка администратораТестовая заявка администратораТестовая заявка администратора', 2, '2024-12-02 20:07:47', '2024-12-03 12:08:32', 'photos/XpZvwFsz2PIKz9gRJhvptkOnEP1enJ2kIKb8uGHq.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -111,7 +117,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (24, '2019_08_19_000000_create_failed_jobs_table', 1),
 (25, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(26, '2024_05_24_193306_create_permission_tables', 1);
+(26, '2024_05_24_193306_create_permission_tables', 1),
+(27, '2024_05_29_143412_create_contacts_table', 1),
+(28, '2024_12_02_194830_add_photos_to_contacts_table', 2);
 
 -- --------------------------------------------------------
 
@@ -381,7 +389,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
@@ -393,7 +401,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT для таблицы `permissions`
