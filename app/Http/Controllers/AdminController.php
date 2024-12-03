@@ -18,9 +18,16 @@ class AdminController extends Controller
     }
 
     public function showOneMessage($id) {
-        $contact = new Contact();
-        return view('admin-one-message', ['data' => $contact->find($id)]);
+        $contact = Contact::find($id);
+    
+        if (!$contact) {
+            // Если заявка не найдена, перенаправляем на список заявок с ошибкой
+            return redirect()->route('admin-data')->withErrors(['message' => 'Заявка не найдена.']);
+        }
+    
+        return view('admin-one-message', ['data' => $contact]);
     }
+    
 
     // public function updateMessage($id) {
     //     $contact = new Contact();

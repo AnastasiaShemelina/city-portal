@@ -26,9 +26,14 @@
                  @if(Auth::user()->isAdmin())
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-400">
                     <x-nav-link :href="route('admin-data')" :active="request()->routeIs('admin-data')" class="text-white hover:text-white">
-                        {{ __('Панель управления') }}
+                        {{ __('Заявки пользователей') }}
                     </x-nav-link>
                 </div>
+                <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-400">
+                <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.index')" class="text-white hover:text-white">
+                    {{ __('Управление категориями') }}
+                </x-nav-link>
+                </div> -->
                  @else
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex text-gray-400">
                     <x-nav-link :href="route('user-data')" :active="request()->routeIs('user-data')" class="text-white hover:text-white">

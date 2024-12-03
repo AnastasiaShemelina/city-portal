@@ -12,6 +12,7 @@ use App\Models\Status;
 
 class ContactController extends Controller
 {
+
     // public function submitForm()
     // {
     //     // Загружаем все категории
@@ -88,11 +89,29 @@ class ContactController extends Controller
         return view('one-message', ['data' => $contact->find($id)]);
     }
 
-    public function allDataUser()
+    public function allDataUser(Request $request)
     {
-        $contact = new Contact();
-        return view('user-data', ['data' => $contact->orderBy('created_at', 'desc')->where('id_user', Auth::user()->id)->get()]);
+        // Формируем запрос для заявок
+        $contactQuery = Contact::where('id_user', Auth::user()->id) // Только заявки текущего пользователя
+            ->orderBy('created_at', 'desc');
+
+        // Проверяем, выбран ли фильтр
+        if ($request->has('status_filter') && !empty($request->status_filter)) {
+            $contactQuery->where('status_id', $request->status_filter);
+        }
+
+        // Получаем заявки
+        $contacts = $contactQuery->get();
+
+        // Получаем все статусы для фильтра
+        $statuses = Status::all();
+
+        return view('user-data', [
+            'data' => $contacts,
+            'statuses' => $statuses, // Передаем статусы в шаблон
+        ]);
     }
+
 
     public function showOneMessageUser($id)
     {
@@ -167,5 +186,6 @@ class ContactController extends Controller
         return redirect()->route('user-data-one', $id)->with('success', 'Сообщение было обновлено');
     }
 
+    
 
 }
