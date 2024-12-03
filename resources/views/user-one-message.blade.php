@@ -6,10 +6,16 @@
     </x-slot>
     <div class="mt-8">
         <div class="alert alert-info max-w-7x1 mx-auto sm:px-6 lg:px-8 myAlert">
-            <p>Статус заявки: <strong>{{ $data->status->name }}</strong></p> <!-- Статус как текст -->
+            
             <p><strong>{{ $data->message}}</strong></p>
             <p>{{ $data->email}} - {{ $data->name }}</p>
+            
             <p><small>{{ $data->created_at}}</small></p>
+            <p>Статус заявки: <strong>{{ $data->status->name }}</strong></p> <!-- Статус как текст -->
+            @if($data->status->name === 'Отклонена' && $data->rejection_reason)
+                <p>Причина отклонения: {{ $data->rejection_reason }}</p>
+            @endif
+            
 
 
             <div class="photosOneCard">

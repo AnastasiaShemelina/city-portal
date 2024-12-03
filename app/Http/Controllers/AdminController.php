@@ -47,40 +47,66 @@ class AdminController extends Controller
 
 
     // public function updateMessageSubmit($id, AdminRequest $req) {
-
     //     $contact = Contact::find($id);
+    
+    //     // Убедимся, что только администратор может изменять статус
+    //     if (Auth::user()->isAdmin()) {  // Используем метод isAdmin
+    //         // Логика изменения статуса, например, с "Новый" на "Решена" или "Отклонена"
+    //         if ($contact->status_id == 1) { // Статус "Новый"
+    //             // Обновляем статус на новый, который передан в запросе
+    //             $contact->status_id = $req->input('status_id');
+    //         }
+    //     }
+    
     //     $contact->name = $req->input('name');
     //     $contact->email = $req->input('email');
     //     $contact->category_id = $req->input('category_id');
     //     $contact->subject = $req->input('subject');
     //     $contact->message = $req->input('message');
-
     //     $contact->save();
-
+    
     //     return redirect()->route('admin-data-one', $id)->with('success', 'Сообщение было обновлено');
     // }
-
-    public function updateMessageSubmit($id, AdminRequest $req) {
+    public function updateMessageSubmit($id, AdminRequest $req)
+    {
+        // Получаем заявку по ID
         $contact = Contact::find($id);
     
         // Убедимся, что только администратор может изменять статус
-        if (Auth::user()->isAdmin()) {  // Используем метод isAdmin
-            // Логика изменения статуса, например, с "Новый" на "Решена" или "Отклонена"
-            if ($contact->status_id == 1) { // Статус "Новый"
-                // Обновляем статус на новый, который передан в запросе
+        if (Auth::user()->isAdmin()) {
+            // Логика изменения статуса
+            if ($contact->status_id == 1 && $req->input('status_id') == 3) { // Если статус меняется с "Новый" на "Отклонена"
+                // Проверим, передано ли поле rejection_reason
+                if (!$req->has('rejection_reason') || empty($req->input('rejection_reason'))) {
+                    return redirect()->back()->withErrors(['rejection_reason' => 'Причина отклонения обязательна при статусе "Отклонена".']);
+                }
+                // Обновляем статус на "Отклонена"
+                $contact->status_id = 3;
+                $contact->rejection_reason = $req->input('rejection_reason'); // Добавляем причину отклонения
+            } elseif ($contact->status_id == 1 && $req->input('status_id') != 3) {
+                // Если статус не "Отклонена", то просто меняем статус на новый
                 $contact->status_id = $req->input('status_id');
+                $contact->rejection_reason = null; // Очистить причину отклонения при смене статуса
             }
         }
     
+        // Обновляем другие поля
         $contact->name = $req->input('name');
         $contact->email = $req->input('email');
         $contact->category_id = $req->input('category_id');
         $contact->subject = $req->input('subject');
         $contact->message = $req->input('message');
+        
+        // Сохраняем изменения
         $contact->save();
     
-        return redirect()->route('admin-data-one', $id)->with('success', 'Сообщение было обновлено');
+        // Перенаправляем с сообщением об успехе
+        return redirect()->route('admin-data-one', $id)->with('success', 'Заявка обновлена!');
     }
+    
+    
+
+    
     
     public function deleteMessage($id) {
         Contact::find($id)->delete();

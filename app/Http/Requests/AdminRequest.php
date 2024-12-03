@@ -14,7 +14,7 @@ class AdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return Auth::check(); // Только авторизованные пользователи могут отправить запрос
     }
 
     /**
@@ -25,7 +25,26 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'status_id' => 'required|exists:statuses,id', // Статус обязательно и должен быть существующим
+            'name' => 'required|string|max:255',           // Имя обязательно, строка, до 255 символов
+            'email' => 'required|email|max:255',           // Email обязательно, должен быть в формате email
+            'category_id' => 'required|exists:categories,id', // Категория обязательна, должна быть существующей
+            'subject' => 'required|string|max:255',         // Тема обязательна, строка, до 255 символов
+            'message' => 'required|string',                  // Текст сообщения обязателен
+            // Валидация для причины отклонения только если статус "Отклонена"
+            'rejection_reason' => 'nullable|string', // Причина обязательна, если статус "Отклонена"
+        ];
+    }
+
+    /**
+     * Получите пользовательские сообщения для проверки ошибок.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'rejection_reason.required_if' => 'Причина отклонения обязательна, если статус заявки "Отклонена".',
         ];
     }
 }

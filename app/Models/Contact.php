@@ -17,6 +17,7 @@ class Contact extends Model
         'message',
         'photo_before',  // новое поле
         'photo_after',   // новое поле
+        'rejection_reason',
     ];
     public function category()
     {
