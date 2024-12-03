@@ -28,8 +28,7 @@
                             <p>Категория: {{$el->category->name}}</p>
                             <p>Статус: <strong>{{$el->status->name}}</strong></p>
                             <p><small>{{$el->created_at}}</small></p>
-                            <a href="{{route('user-data-one', $el->id)}}"><button
-                                    class="btn btn-warning">Подробнее</button></a>
+                            <a href="{{route('admin-data-one', $el->id)}}"><button class="btn btn-warning">Подробнее</button></a>
                         </div>
                     </div>
                 </div>
