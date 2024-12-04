@@ -163,6 +163,7 @@ class ContactController extends Controller
         if ($req->hasFile('photo_after')) {
             $contact->photo_after = $req->file('photo_after')->store('photos', 'public');
         }
+        
         $contact->save();
         return redirect()->route('user-data-one', $id)->with('success', 'Сообщение было обновлено');
     }

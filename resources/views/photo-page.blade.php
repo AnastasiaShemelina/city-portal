@@ -119,9 +119,7 @@
             @endforeach
         </div>
         <!-- Количество задач со статусом "Решена":  $ resolvedCount -->
-        <div class="text-center my-4">
-            <p class="card-text text-truncate"></p>
-        </div>
+ 
 
     </div>
 
