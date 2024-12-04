@@ -832,11 +832,12 @@
         }
     }
 
-    .general{
+    .general {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
     }
+
     /* Слоган - центрируем по вертикали */
     .slogan-container {
         display: flex;
@@ -857,7 +858,7 @@
 
     /* Контейнер для карточек */
     .card-container {
-        height: 80vh;
+        height:80vh;
         margin-top: 3%;
         max-width: 300px;
         display: flex;
@@ -870,9 +871,15 @@
         /* Тёмный фон для карточек */
         border-radius: 0.375rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 5%;
+    }
+
+    .card-body{
+        height: 300px;
     }
 
     .card-title {
+        margin-top: 210px;
         font-size: 1.125rem;
         font-weight: 600;
         color: #f3f4f6;
@@ -888,6 +895,41 @@
         font-size: 0.8rem;
         color: #bbb;
     }
+
+    /* Контейнер для фото */
+.photo-container {
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Обе фотографии на одном месте, одна поверх другой */
+.photo-before, .photo-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-sizing: border-box;
+}
+
+/* Фото до скрыто изначально */
+.photo-before {
+    opacity: 0;
+    transform: scale(1);
+}
+
+/* Фото после по умолчанию */
+.photo-after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Анимация масштабирования для фото до и после */
+.photo-before.scale, .photo-after.scale {
+    transform: scale(1.1); /* Увеличиваем изображение при наведении */
+}
 </style>
 </head>
 
@@ -922,34 +964,8 @@
         </div>
     </div>
 
-    <!-- Слоган по центру -->
-    <div class="general">
-        <div class="slogan-container">
-            <div class="slogan">СДЕЛАЕМ ЛУЧШЕ <br> ВМЕСТЕ</div>
-        </div>
+ @include('photo-page')
 
-        <!-- Контейнер для карточек -->
-        <div class="card-container">
-            @foreach($data as $el)
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title text-truncate">{{$el->subject}}</h5>
-                        <p class="card-text text-truncate">{{$el->email}}</p>
-                        <p class="card-text text-truncate">Категория: {{$el->category->name}}</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <small>{{$el->created_at}}</small>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-
-
-    <!-- Подключение Bootstrap JS и его зависимостей -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;  // Подключаем модель Contact
+use App\Models\Contact;
 
-class WelcomeController extends Controller
+class PhotoController extends Controller
 {
     public function index()
     {
@@ -15,6 +15,13 @@ class WelcomeController extends Controller
                        ->take(4)  // Ограничиваем выборку 4 последними заявками
                        ->get();
 
-        return view('welcome', ['data' => $data]);
+        // Подсчитываем общее количество заявок со статусом "Решена"
+        $resolvedCount = Contact::where('status_id', '2')->count();
+
+        // Передаём данные в представление
+        return view('photo-page', ['data' => $data, 'resolvedCount' => $resolvedCount]);
+        
+
+
     }
 }

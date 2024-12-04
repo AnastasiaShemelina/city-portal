@@ -4,17 +4,7 @@
             {{__('Ваши заявки')}}
         </h2>
     </x-slot>
-    <form action="{{ route('user-data') }}" method="GET" class="mb-4">
-        <label for="status_filter" class="block text-gray-700">Фильтр по статусу:</label>
-        <select name="status_filter" id="status_filter" class="form-control" onchange="this.form.submit()">
-            <option value="">Все статусы</option>
-            @foreach($statuses as $status)
-                <option value="{{ $status->id }}" {{ request('status_filter') == $status->id ? 'selected' : '' }}>
-                    {{ $status->name }}
-                </option>
-            @endforeach
-        </select>
-    </form>
+
     <div class="mt-8 generalcontainerDiv">
         @foreach($data as $el)
 

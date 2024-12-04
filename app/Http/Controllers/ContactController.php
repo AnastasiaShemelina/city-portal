@@ -12,7 +12,6 @@ use App\Models\Status;
 
 class ContactController extends Controller
 {
-
     // public function submitForm()
     // {
     //     // Загружаем все категории
@@ -89,29 +88,11 @@ class ContactController extends Controller
         return view('one-message', ['data' => $contact->find($id)]);
     }
 
-    public function allDataUser(Request $request)
+    public function allDataUser()
     {
-        // Формируем запрос для заявок
-        $contactQuery = Contact::where('id_user', Auth::user()->id) // Только заявки текущего пользователя
-            ->orderBy('created_at', 'desc');
-
-        // Проверяем, выбран ли фильтр
-        if ($request->has('status_filter') && !empty($request->status_filter)) {
-            $contactQuery->where('status_id', $request->status_filter);
-        }
-
-        // Получаем заявки
-        $contacts = $contactQuery->get();
-
-        // Получаем все статусы для фильтра
-        $statuses = Status::all();
-
-        return view('user-data', [
-            'data' => $contacts,
-            'statuses' => $statuses, // Передаем статусы в шаблон
-        ]);
+        $contact = new Contact();
+        return view('user-data', ['data' => $contact->orderBy('created_at', 'desc')->where('id_user', Auth::user()->id)->get()]);
     }
-
 
     public function showOneMessageUser($id)
     {
@@ -171,7 +152,7 @@ class ContactController extends Controller
         $contact->category_id = $req->input('category_id');
         $contact->subject = $req->input('subject');
         $contact->message = $req->input('message');
-        $contact->save();
+       
 
         // Обработка загрузки изображения "до"
         if ($req->hasFile('photo_before')) {
@@ -182,10 +163,9 @@ class ContactController extends Controller
         if ($req->hasFile('photo_after')) {
             $contact->photo_after = $req->file('photo_after')->store('photos', 'public');
         }
-
+        $contact->save();
         return redirect()->route('user-data-one', $id)->with('success', 'Сообщение было обновлено');
     }
 
-    
 
 }

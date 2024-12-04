@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhotoController;
 
 /*
 |----------------------------------------------------------------------
@@ -22,7 +23,10 @@ Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::get('/photo-page', [PhotoController::class, 'index'])->name('photo-page');
+
+
+require __DIR__ . '/auth.php';
 
 // Страницы профиля
 Route::middleware('auth')->group(function () {
@@ -35,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['middleware' => ['role:admin']], function () {
 
         // Главная страница для администратора
-        Route::get('/admin', function() {
+        Route::get('/admin', function () {
             return view('admin');
         })->name('admin');
 
@@ -67,14 +71,14 @@ Route::middleware('auth')->group(function () {
 
     // Роуты для категорий (только для админов)
     Route::group(['middleware' => ['role:admin']], function () {
-        
+
         // Страница с категориями
         Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
-        
+
         // Страница для добавления новой категории
         Route::get('/admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
         Route::post('/admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
-        
+
         // Удаление категории
         Route::delete('/admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
     });
