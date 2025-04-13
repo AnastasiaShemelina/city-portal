@@ -24,7 +24,7 @@
 
 2. Клонируйте репозиторий в папку `OSPanel/domains`:
    ```bash
-   git clone https://github.com/AnastasiaShemelina/city-portal.git
+   git clone [https://github.com/AnastasiaShemelina/city-portal.git](https://github.com/AnastasiaShemelina/city-portal.git)
 
 3. Откройте OpenServer и запустите его
 
